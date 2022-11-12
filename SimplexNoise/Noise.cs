@@ -14,7 +14,7 @@ namespace SimplexNoise
     /// </summary>
     public static class Noise
     {
-        public static float[] Calc1D(int width, float scale)
+        public static float[] Grid1D(int width, float scale)
         {
             var values = new float[width];
             for (var i = 0; i < width; i++)
@@ -22,7 +22,13 @@ namespace SimplexNoise
             return values;
         }
 
-        public static float[,] Calc2D(int width, int height, float scale)
+        public static float Calc1D(float x, float scale) => Generate(x * scale);
+
+        public static float Calc2D(float x, float y, float scale) => Generate(x * scale, y * scale);
+        
+        public static float Calc3D(float x, float y, float z, float scale) => Generate(x * scale, y * scale, z * scale);
+
+        public static float[,] Grid2D(int width, int height, float scale)
         {
             var values = new float[width, height];
             for (var i = 0; i < width; i++)
@@ -31,7 +37,7 @@ namespace SimplexNoise
             return values;
         }
 
-        public static float[, ,] Calc3D(int width, int height, int length, float scale)
+        public static float[, ,] Grid3D(int width, int height, int length, float scale)
         {
             var values = new float[width, height, length];
             for (var i = 0; i < width; i++)
